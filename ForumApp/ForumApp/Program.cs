@@ -1,10 +1,14 @@
+using ForumApp.Contracts;
 using ForumApp.Data;
+using ForumApp.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IPostService, PostService>();
 
 
 //EF Core components

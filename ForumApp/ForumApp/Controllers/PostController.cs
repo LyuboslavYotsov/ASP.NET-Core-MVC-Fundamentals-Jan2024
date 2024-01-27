@@ -1,4 +1,5 @@
-﻿using ForumApp.Data;
+﻿using ForumApp.Contracts;
+using ForumApp.Data;
 using ForumApp.Data.Models;
 using ForumApp.Models.Post;
 using Microsoft.AspNetCore.Mvc;
@@ -8,23 +9,17 @@ namespace ForumApp.Controllers
 {
     public class PostController : Controller
     {
-        private readonly ForumAppDbContext _context;
 
-        public PostController(ForumAppDbContext context)
+        private readonly IPostService _postService;
+
+        public PostController(IPostService postService)
         {
-            _context = context;
+            _postService = postService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var posts = await _context.Posts
-                .Select(p => new PostViewModel()
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Content = p.Content,
-                })
-                .ToListAsync();
+            var posts = await _postService.GetAllAsync();
 
             return View(posts);
         }
@@ -35,22 +30,19 @@ namespace ForumApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(PostViewModel model)
         {
-            var post = new Post()
+            if (!ModelState.IsValid)
             {
-                Title = model.Title,
-                Content = model.Content,
-            };
+                throw new ArgumentException("Invalid post!");
+            }
 
-            await _context.Posts.AddAsync(post);
-
-            await _context.SaveChangesAsync();
+            await _postService.AddPostAsync(model);
 
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Edit(int id)
         {
-            var post = await _context.Posts.FindAsync(id);
+            var post = await _postService.GetPostByIdAsync(id);
 
             return View(new PostViewModel()
             {
@@ -62,12 +54,7 @@ namespace ForumApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id,PostViewModel model)
         {
-            var post = await _context.Posts.FindAsync(id);
-
-            post.Title = model.Title;
-            post.Content = model.Content;
-
-            await _context.SaveChangesAsync();
+            await _postService.EditPostAsync(id, model);
 
             return RedirectToAction("Index");
         }
@@ -75,10 +62,7 @@ namespace ForumApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var post = await _context.Posts.FindAsync(id);
-
-            _context.Posts.Remove(post);
-            await _context.SaveChangesAsync();
+            await _postService.DeletePostAsync(id);
 
             return RedirectToAction("Index");
         }
