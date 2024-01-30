@@ -24,7 +24,7 @@ namespace ForumApp.Controllers
             return View(posts);
         }
 
-        public async Task<IActionResult> Add()
+        public IActionResult Add()
         => View();
 
         [HttpPost]
@@ -52,9 +52,10 @@ namespace ForumApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id,PostViewModel model)
+        public async Task<IActionResult> Edit(PostViewModel model)
         {
-            await _postService.EditPostAsync(id, model);
+            //TODO remove id and get it from the model
+            await _postService.EditPostAsync(model);
 
             return RedirectToAction("Index");
         }

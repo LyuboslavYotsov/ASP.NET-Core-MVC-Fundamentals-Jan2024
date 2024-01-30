@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumApp", "ForumApp\ForumApp.csproj", "{36DD298E-3B69-4E6C-8B2B-7655E2A949E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForumApp", "ForumApp\ForumApp.csproj", "{36DD298E-3B69-4E6C-8B2B-7655E2A949E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumApp.Core", "ForumApp.Core\ForumApp.Core.csproj", "{7C1B2983-9D81-43A3-AA21-4F2BC7121539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumApp.Data", "ForumApp.Data\ForumApp.Data.csproj", "{FF9768F8-09BD-480A-8605-130AF4E55672}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{36DD298E-3B69-4E6C-8B2B-7655E2A949E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36DD298E-3B69-4E6C-8B2B-7655E2A949E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36DD298E-3B69-4E6C-8B2B-7655E2A949E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C1B2983-9D81-43A3-AA21-4F2BC7121539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C1B2983-9D81-43A3-AA21-4F2BC7121539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C1B2983-9D81-43A3-AA21-4F2BC7121539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C1B2983-9D81-43A3-AA21-4F2BC7121539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF9768F8-09BD-480A-8605-130AF4E55672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF9768F8-09BD-480A-8605-130AF4E55672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF9768F8-09BD-480A-8605-130AF4E55672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF9768F8-09BD-480A-8605-130AF4E55672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
